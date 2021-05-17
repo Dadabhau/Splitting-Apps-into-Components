@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-cockpit',
@@ -6,9 +6,14 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./cockpit.component.css']
 })
 export class CockpitComponent implements OnInit {
-  newServerName = '';
-  newServerContent = '';
+  // //Using @output
+  // newServerName = '';
+  // newServerContent = '';
 
+  @ViewChild('serverContentInput') serverContentInput: ElementRef;
+
+
+  //Using @output
   //Data send from eventemitter to parent component(App conponent) with object data type
   @Output() serverCreated = new EventEmitter<{serverName:string, serverContent:string}>();
   @Output() blueprintCreated = new EventEmitter<{serverName:string, serverContent:string}>();
@@ -35,14 +40,21 @@ export class CockpitComponent implements OnInit {
 
 //Using Local References in Templates
   onAddServer(nameInput:HTMLInputElement) {
-    console.log(nameInput.value);
-    // Get Data from Event and send EventEmitter
-    this.serverCreated.emit({serverName: nameInput.value, serverContent: this.newServerContent});
+    // Using @ViewChild
+    console.log(this.serverContentInput);
+    this.serverCreated.emit({serverName: nameInput.value, serverContent: this.serverContentInput.nativeElement.value});
+
+    // console.log(nameInput.value);
+    // // Get Data from Event and send EventEmitter
+    // this.serverCreated.emit({serverName: nameInput.value, serverContent: this.newServerContent});
   }
 
   onAddBlueprint(nameInput:HTMLInputElement) {
-    console.log(nameInput.value);
-    // Get Data from Event and send EventEmitter
-    this.blueprintCreated.emit({serverName: nameInput.value, serverContent: this.newServerContent});
+     // Using @ViewChild
+     this.blueprintCreated.emit({serverName: nameInput.value, serverContent: this.serverContentInput.nativeElement.value});
+    
+    // console.log(nameInput.value);
+    // // Get Data from Event and send EventEmitter
+    // this.blueprintCreated.emit({serverName: nameInput.value, serverContent: this.newServerContent});
   }
 }
