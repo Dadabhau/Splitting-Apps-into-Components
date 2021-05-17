@@ -1,0 +1,22 @@
+<div class="container">
+  <!--Data reciverd from Cockpit component(using from eventemitter serverCreated & blueprintCreated event) and data format from app Component using onServerAdded(),onBlueprintAdded() method-->
+  <app-cockpit
+    (serverCreated)="onServerAdded($event)"
+    (blueprintCreated)="onBlueprintAdded($event)"
+  ></app-cockpit>
+  <!--- // Altrenated use like this: <app-cockpit
+    (serverCreated)="onServerAdded($event)"
+    ('bpCreated')="onBlueprintAdded($event)"
+  ></app-cockpit>-->
+  <hr />
+  <div class="row">
+    <div class="col-xs-12">
+      <app-server-element
+        *ngFor="let serverElement of serverElements"
+        [element]="serverElement"
+      ></app-server-element>
+      <!--Data reciverd from app component(serverElement) and data format from Server Component (element) using [element]="serverElement"-->
+      <!-- // Altrenated use like this: <app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement" ></app-server-element>-->
+    </div>
+  </div>
+</div>
