@@ -1,5 +1,5 @@
 <!--Structure Define for display server info-->
-<div class="panel panel-default">
+<!-- <div class="panel panel-default">
   <div class="panel-heading">{{ element.name }}</div>
   <div class="panel-body">
     <p>
@@ -8,5 +8,22 @@
       }}</strong>
       <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
     </p>
+  </div>
+</div>
+ -->
+
+<!-- Using <ng-content></ng-content>-->
+<!--<div class="panel panel-default">
+  <div class="panel-heading">{{ element.name }}</div>
+  <div class="panel-body">
+    <ng-content></ng-content>
+  </div>
+</div> -->
+
+<!--Life cycle hooks Checking-->
+<div class="panel panel-default">
+  <div class="panel-heading">{{ name }}</div>
+  <div class="panel-body">
+    <ng-content></ng-content>
   </div>
 </div>

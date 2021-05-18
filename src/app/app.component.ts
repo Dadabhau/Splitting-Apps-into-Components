@@ -27,5 +27,12 @@ export class AppComponent {
       content: blueprintData.serverContent
     });
   }
-
+  
+  // Life cycle hooks Checking
+  onChangeFirst() {
+    this.serverElements[0].name = 'changed!'
+  }
+  ngOnDestroyFirst(){
+    this.serverElements.splice(0,1);
+  }
 }

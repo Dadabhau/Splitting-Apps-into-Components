@@ -11,10 +11,31 @@
   <hr />
   <div class="row">
     <div class="col-xs-12">
+      <!--Life cycle hooks Checking-->
+      <button class="btn btn-primary" (click)="onChangeFirst()">
+        Change First Element
+      </button>
+      <button class="btn btn-danger" (click)="ngOnDestroyFirst()">
+        Destroy this
+      </button>
+      <!--Using <<ng-content></ng-content> -->
       <app-server-element
         *ngFor="let serverElement of serverElements"
         [element]="serverElement"
-      ></app-server-element>
+        [name]="serverElement.name"
+      >
+        <p>
+          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{
+            serverElement.content
+          }}</strong>
+          <em *ngIf="serverElement.type === 'blueprint'">{{
+            serverElement.content
+          }}</em>
+        </p>
+      </app-server-element>
+
+      <!-- <app-server-element *ngFor="let serverElement of serverElements" [element]="serverElement"></app-server-element> -->
+
       <!--Data reciverd from app component(serverElement) and data format from Server Component (element) using [element]="serverElement"-->
       <!-- // Altrenated use like this: <app-server-element *ngFor="let serverElement of serverElements" [srvElement]="serverElement" ></app-server-element>-->
     </div>
